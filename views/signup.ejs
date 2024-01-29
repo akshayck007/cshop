@@ -1,0 +1,62 @@
+<%- include('./partials/header')%>
+<form
+  style="
+    width: max-content;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+  "
+  action="/register"
+  method="POST"
+>
+  <h1 class="display-6">Sign Up</h1>
+  <div class="mb-3">
+    <label class="form-label" for="username">Username</label>
+    <input class="form-control" type="text" id="username" name="username" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="password">Password</label>
+    <input class="form-control" type="password" id="password" name="password" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="gender">Gender</label>
+    <input class="form-control" type="text" id="gender" name="gender" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="email">Email</label>
+    <input class="form-control" type="email" id="email" name="email" />
+  </div>
+
+  <div class="mb-3">
+    <p>Register as a</p>
+    <label class="form-label" for="role">Buyer</label>
+    <input
+      class="form-check-input"
+      type="radio"
+      id="role"
+      name="role"
+      value="buyer"
+    />
+
+    <label class="form-label" for="role">Seller</label>
+    <input
+      class="form-check-input"
+      type="radio"
+      id="role"
+      name="role"
+      value="seller"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-sm btn-success">Sign Up</button>
+  <p>
+    Already Have an Account? Login here👉<a
+      class="btn btn-secondary"
+      href="/login"
+      >Login</a
+    >
+  </p>
+</form>
+
+<%- include('./partials/footer')%>

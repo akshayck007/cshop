@@ -1,0 +1,62 @@
+<%- include('./partials/header')%>
+    
+    <%- include('./flash')%>
+    <%- include('./nav')%>
+    <div class="row">
+        <div class="col-6 " style="text-align: center; border: 1px solid black; margin: 2rem auto; width: max-content; padding: 1rem;" class="wrapper">
+            <h1><%=foundProduct.name%></h1>
+            <img style="height: 300px; width: 500px;" src="<%=foundProduct.img%>"></img>
+            <h2><%=foundProduct.price%></h2>
+            <p><%=foundProduct.desc%></p>
+            <form action="/user/<%=foundProduct._id%>/cart" method="POST">
+                <button class="btn btn-primary">Add to Cart</button>
+            </form>
+        </div>
+
+        <div class="col-6 border">
+            <h1>Review</h1>
+            <form action="/products/<%=foundProduct._id%>/rating" method="POST">
+                <label for="stars">Rating</label>
+                
+                <fieldset class="starability-basic">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+                
+                <textarea class="d-block" name="comment" id="" rows="3">Your Review</textarea>
+                <button type="submit">Add Review</button>
+            </form>
+        </div>
+
+        <div class="commentBox border mt-4 mb-4">
+            <% for(let {comment,rating,createdAt,_id:reviewId} of foundProduct.reviews){ %>
+                <div class="comment mb-5">
+                    <!-- <h1>Rating:<%='⭐'.repeat(rating)%></h1> -->
+                    <h1 class="starability-result" data-rating="<%=rating%>">
+                        Rated: <%=rating%> stars
+                    </h1>
+                    <h2><%=comment%></h2>
+                    <%if(createdAt){%>
+                    <h4><%=createdAt.toDateString()%></h4>
+                    <%}%>
+                    <%if(currentUser.reviews.includes(reviewId)){%>
+                        <form action="/products/<%=foundProduct._id%>/rating/<%=reviewId%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    <%}%>
+                </div>
+                
+            <%}%>
+        </div>
+    </div>
+
+    <%- include('./partials/footer')%>

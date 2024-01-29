@@ -1,0 +1,31 @@
+<%- include('./partials/header')%>
+    <%- include('./flash')%>
+    <%- include('./nav')%>
+    <div class="wrapper row" >
+      
+    <% for(let product of products){%>
+      <div style="background-color: rgb(37, 38, 48); text-align: center; border: 2px solid rgba(211, 211, 211, 0.479); margin: 2rem auto; width: max-content; padding: 1rem;" class="rounded col-md-4">
+        <h1><%=product.name%></h1>
+        <img style="display: block; height: 300px; width: 500px;" src="<%=product.img%>"></img>
+        <div class="btn btn-like text-white" product-id="<%=product._id%>">
+          <%if(currentUser&& currentUser.wishlist.includes(product._id)){%>
+            <i class="fa-solid fa-heart"></i>
+          <%}else{%>
+            <i class="fa-regular fa-heart"></i>
+          <%}%>
+        </div>
+        <h2><%=product.price%></h2>
+        <p><%=product.desc%></p>
+        <a class="btn btn-success" href="/products/<%=product._id%>">Show this one</a>
+        <%if(currentUser&& currentUser.role=='seller' && currentUser._id.equals(product.author)){%>
+          <a class="btn btn-success" href="/products/<%=product._id%>/edit">Edit this one</a>
+          <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger mt-2" type="submit">Delete</button>
+          </form>
+        <%}%>
+      </div>
+    <%}%>
+    </div>
+    
+    <script src="/js/common.js"></script>
+    <%- include('./partials/footer')%>

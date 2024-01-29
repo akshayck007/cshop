@@ -1,0 +1,44 @@
+<%- include('./partials/header')%> <%- include('./flash')%> <%-
+include('./nav')%>
+<form class="needs-validation" action="/products" method="POST" novalidate>
+  <div>
+    <label for="product_name">Product</label>
+    <input
+      id="product_name"
+      name="name"
+      placeholder="Product name"
+      type="text"
+      required
+    />
+    <div class="valid-feedback">Looks Good</div>
+    <div class="invalid-feedback">choose a product name!</div>
+  </div>
+
+  <div>
+    <label for="product_image">Image link</label>
+    <input id="product_image" name="img" placeholder="image link" type="text" />
+  </div>
+
+  <div>
+    <label for="product_price">Price</label>
+    <input
+      id="product_price"
+      name="price"
+      placeholder="Product price"
+      type="text"
+      required
+    />
+    <div class="valid-feedback">Looks Good</div>
+    <div class="invalid-feedback">choose a product name!</div>
+  </div>
+
+  <div>
+    <label for="product_desc">Description</label>
+    <textarea name="desc" id="product_desc" cols="30" rows="10"></textarea>
+  </div>
+
+  <button type="submit">Add product</button>
+</form>
+
+<script src="/js/script.js"></script>
+<%- include('./partials/footer')%>

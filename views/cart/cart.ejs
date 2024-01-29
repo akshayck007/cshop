@@ -1,0 +1,43 @@
+<%- include('../partials/header')%> <%- include('../flash')%>
+<%-include('../nav')%>
+
+<div
+  class="container row gap-3 p-3 mx-auto"
+  style="background: linear-gradient(black, blue)"
+>
+  <div class="cartItems col-7">
+    <% for(let {name,img,price,desc,_id:productId} of cartArray){%>
+    <div class="item row bg-primary p-3 mb-3 rounded">
+      <div class="col-4">
+        <img src="<%=img%>" class="img-fluid" alt="" />
+      </div>
+      <div class="col-8">
+        <h2><%=name%></h2>
+        <b><%=price%></b>
+        <p><%=desc%></p>
+        <div class="actions">
+          <form action="/user/<%=productId%>/cart?_method=DELETE" method="POST">
+            <button class="btn btn-danger inline-block">Remove</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <%}%>
+  </div>
+
+  <div class="total col-4 bg-primary">
+    <div class="items">
+      <ul>
+        <%for({name,price} of cartArray){%>
+        <li><%=name%> --&gt; $<%=price%></li>
+        <%}%>
+      </ul>
+      <b class="totalprice">total Price: $<%=totalPrice%></b>
+    </div>
+    <form action="/checkout" method="GET">
+      <button class="btn btn-success inline-block">checkout</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer')%>

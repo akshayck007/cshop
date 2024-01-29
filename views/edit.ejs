@@ -1,0 +1,46 @@
+<%- include('./partials/header')%> <%- include('./flash')%> <%-
+include('./nav')%>
+<form action="/products/<%=foundProduct._id%>?_method=PATCH" method="POST">
+  <div>
+    <label for="product_name">Product</label>
+    <input
+      id="product_name"
+      name="name"
+      placeholder="Product name"
+      type="text"
+      value="<%=foundProduct.name%>"
+    />
+  </div>
+
+  <div>
+    <label for="product_image">Image link</label>
+    <input
+      id="product_image"
+      name="img"
+      placeholder="image link"
+      type="text"
+      value="<%=foundProduct.img%>"
+    />
+  </div>
+
+  <div>
+    <label for="product_price">Price</label>
+    <input
+      id="product_price"
+      name="price"
+      placeholder="Product price"
+      type="text"
+      value="<%=foundProduct.price%>"
+    />
+  </div>
+
+  <div>
+    <label for="product_desc">Description</label>
+    <textarea name="desc" id="product_desc" cols="30" rows="10">
+<%=foundProduct.desc%></textarea
+    >
+  </div>
+
+  <button type="submit">Apply changes</button>
+</form>
+<%- include('./partials/footer')%>
