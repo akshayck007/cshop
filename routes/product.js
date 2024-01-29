@@ -9,6 +9,9 @@ const {
 } = require("../middleware");
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  res.render("home");
+});
 router.get("/products", async (req, res) => {
   try {
     const products = await Product.find({});
